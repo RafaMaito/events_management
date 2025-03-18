@@ -2,12 +2,12 @@
 
 A powerful, modern web application built using **Drupal 10**, **React**, and **Leaflet** to create, manage, and explore events interactively.
 
-## 🚀 Project Overview
+## Project Overview
 This application allows organizers to create and manage events. Users can view detailed event information, register easily through intuitive forms, and visualize event locations on an interactive map.
 
 ---
 
-## 🛠 Technologies & Tools
+## Technologies & Tools
 
 - **Drupal 10**
 - **DDEV (Docker-based development environment)**
@@ -21,7 +21,7 @@ This application allows organizers to create and manage events. Users can view d
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - ✅ **Event creation:** Easily create and manage events within Drupal.
 - ✅ **Registration system:** Users can sign up directly for events using Drupal Webforms.
@@ -33,9 +33,9 @@ This application allows organizers to create and manage events. Users can view d
 
 ---
 
-## 🚧 Installation and Setup (Local Development)
+## Installation and Setup (Local Development)
 
-### 📌 **1. Drupal Setup with DDEV**
+### **1. Drupal Setup with DDEV**
 
 Clone the repository and install Drupal dependencies:
 
