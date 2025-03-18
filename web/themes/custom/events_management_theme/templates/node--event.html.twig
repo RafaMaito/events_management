@@ -1,0 +1,50 @@
+{#
+  Custom template for displaying "Event" content
+#}
+
+{{ attach_library('event_management_theme/global-styling') }}
+
+<article{{ attributes.addClass('event-node') }}>
+
+  {# Always display the title clearly #}
+  <h1{{ title_attributes }}>{{ label }}</h1>
+
+  {# Event Image #}
+  {% if content.field_event_image %}
+    <div class="event-image">
+      {{ content.field_event_image }}
+    </div>
+  {% endif %}
+
+  {# Event Date and Time #}
+  {% if content.field_event_date_time %}
+    <div class="event-date-time">
+      <strong>Event Date:</strong>
+      {{ content.field_event_date_time }}
+    </div>
+  {% endif %}
+
+  {# Event Location #}
+  {% if content.field_event_location %}
+    <div class="event-location">
+      <strong>Location:</strong>
+      {{ content.field_event_location }}
+    </div>
+  {% endif %}
+
+  {# Event Description #}
+  {% if content.field_event_description %}
+    <div class="event-description">
+      {{ content.field_event_description }}
+    </div>
+  {% endif %}
+
+  {# Registration Form #}
+  {% if content.field_event_registration_form %}
+    <div class="event-registration-form">
+      <h2>Register for the Event:</h2>
+      {{ content.field_event_registration_form }}
+    </div>
+  {% endif %}
+
+</article>
