@@ -1,0 +1,12 @@
+name: 'Event Management Theme'
+type: theme
+description: 'Theme for the Event Management website.'
+core_version_requirement: ^10
+base theme: classy
+regions:
+  header: 'Header'
+  content: 'Content'
+  sidebar: 'Sidebar'
+  footer: 'Footer'
+libraries:
+  - event_management_theme/global-styling
