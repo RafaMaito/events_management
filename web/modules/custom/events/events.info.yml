@@ -1,0 +1,5 @@
+name: Events
+type: module
+description: 'Module to management events.'
+core_version_requirement: ^10
+package: Custom
