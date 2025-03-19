@@ -1,0 +1,8 @@
+services:
+  events.weather_service:
+    class: Drupal\events\Service\WeatherService
+    arguments: ['@http_client', '@config.factory', '@logger.channel.events']
+
+  logger.channel.events:
+    parent: 'logger.channel_base'
+    arguments: ['events']
