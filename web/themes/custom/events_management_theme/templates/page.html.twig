@@ -1,0 +1,17 @@
+<div class="layout">
+  <header class="header">{{ page.header }}</header>
+
+  <div class="main-wrapper">
+    {% if page.sidebar_left %}
+      <aside class="sidebar sidebar-left">{{ page.sidebar_left }}</aside>
+    {% endif %}
+
+    <main class="content">{{ page.content }}</main>
+
+    {% if page.sidebar_right %}
+      <aside class="sidebar sidebar-right">{{ page.sidebar_right }}</aside>
+    {% endif %}
+  </div>
+
+  <footer class="footer">{{ page.footer }}</footer>
+</div>
