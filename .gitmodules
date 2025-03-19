@@ -1,0 +1,3 @@
+[submodule "react-map-app"]
+	path = react-map-app
+	url = git@github.com:RafaMaito/event-management-map-app.git
