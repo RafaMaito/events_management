@@ -1,0 +1,67 @@
+<?php
+
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function events_views_pre_render($view) {
+  if ($view->id() == 'event_list') {
+
+     // Retrieve the weather service from Drupal's service container
+    $weatherService = \Drupal::service('events.weather_service');
+
+    foreach ($view->result as $index => $row) {
+      if (isset($row->_entity) && $row->_entity->hasField('field_event_location')) {
+        $address = $row->_entity->get('field_event_location')->first()->getValue();
+
+        // Extract only the city (locality) from the address.
+        $city = $address['locality'] ?? 'Unknown City';
+        // Remove accents and special characters from the city name.
+        $city = transliterator_transliterate('Any-Latin; Latin-ASCII;', $city);
+
+        // Fetch the weather data for the specified city.
+        $weather = $weatherService->getCurrentWeather($city);
+        $temperature = isset($weather['current']['temp_c']) ? $weather['current']['temp_c'] . '°C' : 'N/A';
+        // Add the formatted weather information to a custom column in the View.
+        $view->result[$index]->event_weather_column = "Weather in $city: $temperature";
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_plugins().
+ *
+ * Defines a custom Views field plugin for displaying weather information.
+ */
+function events_views_plugins() {
+  return [
+    'field' => [
+      'event_weather_column' => [
+        'title' => t('Event Weather'),
+        'help' => t('Displays the event weather column.'),
+        'handler' => 'Drupal\events\Plugin\views\field\EventWeatherColumn',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_views_data().
+ *
+ * Defines additional data to be used in Views, enabling the custom weather column.
+ */
+function events_views_data() {
+  $data = [];
+  $data['views']['event_weather_column'] = [
+    'title' => t('Event Weather'),
+    'help' => t('Custom event weather column added via hook_views_pre_render.'), // Column description.
+    'field' => [
+      'id' => 'event_weather_column', // This must match the plugin ID.
+      'real field' => 'nid', // Uses an existing real field as a reference.
+    ],
+  ];
+  return $data;
+}
